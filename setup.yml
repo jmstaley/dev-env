@@ -1,0 +1,28 @@
+---
+- hosts: dev
+  remote_user: vagrant
+  tasks:
+    - name: Update apt cache
+      apt: update_cache=yes
+      sudo: true
+    - name: install vim
+      apt: pkg=vim state=latest
+      sudo: true
+    - name: Install virtualenv wrapper
+      apt: pkg=virtualenvwrapper state=latest
+      sudo: true
+    - name: Install git
+      apt: pkg=git state=latest
+      sudo: true
+    - name: Get up to date tmux
+      get_url: url=https://launchpad.net/ubuntu/+archive/primary/+files/tmux_1.8-4_amd64.deb dest=/home/vagrant/tmux_1.8-4_amd64.deb
+      sudo: true
+    - name: Install tmux
+      shell: dpkg -i tmux_1.8-4_amd64.deb
+      sudo: true
+    - name: Copy over bashrc
+      copy: src=files/bashrc dest=/home/vagrant/.bashrc
+    - name: Copy over vimrc
+      copy: src=files/vimrc dest=/home/vagrant/.vimrc
+    - name: Copy over vim folder
+      copy: src=files/vim/ dest=/home/vagrant/.vim/

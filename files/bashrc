@@ -1,0 +1,55 @@
+[ -z "$PS1" ] && return
+# don't put duplicate lines in the history. See bash(1) for more options
+export HISTCONTROL=ignoredups
+export HISTCONTROL=ignoreboth
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+if [ -n "$SSH_CLIENT" ]; then text=" ssh"
+fi
+#
+update_prompt() {
+    DIR=`pwd|sed -e "s|$HOME|~|"`;
+    if [ ${#DIR} -gt 30 ]; then
+      CWD="${DIR:0:12}...${DIR:${#DIR}-15}"
+    else
+       CWD="$DIR"
+    fi
+}
+
+PROMPT_COMMAND=update_prompt
+
+PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\$CWD\[\033[00m\]\$ "
+ 
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
+    ;;
+*)
+    ;;
+esac
+
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+alias l='ls'
+alias ll='ls -lh' 
+alias lt='ls -lrth'
+alias lf='ls -lSrh'
+alias ifind="find ./ -follow -iname"
+
+export GREP_OPTIONS='--color=auto'
+export LS_OPTIONS='--color=auto'
+
+alias ls='ls $LS_OPTIONS'
+
+PROMPT_COMMAND='DIR=`pwd`; if [ ${#DIR} -gt 30 ]; then CurDir=${DIR:0:12}...${DIR:${#DIR}-15}; else CurDir=$DIR; fi; echo -ne "\033]0;${USER}@${HOSTNAME}: ${CurDir}\007"; '
+PS1="\u@\h:[\[\e[1;32m\]\$CurDir\[\e[m\]]\$ "
