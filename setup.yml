@@ -14,6 +14,12 @@
     - name: Install git
       apt: pkg=git state=latest
       sudo: true
+    - name: install libmysqlclient-dev
+      apt: pkg=libmysqlclient-dev state=latest
+      sudo: true
+    - name: Install python-dev
+      apt: pkg=python-dev state=latest
+      sudo: true
     - name: Get up to date tmux
       get_url: url=https://launchpad.net/ubuntu/+archive/primary/+files/tmux_1.8-4_amd64.deb dest=/home/vagrant/tmux_1.8-4_amd64.deb
       sudo: true
