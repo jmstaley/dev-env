@@ -33,3 +33,5 @@
       command: mkdir -p ~/.vim/autoload ~/.vim/bundle
     - name: Get pathogen
       command: curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+    - name: Get syntastic
+      command: git clone --depth=1 https://github.com/scrooloose/syntastic.git chdir=/home/vagrant/.vim/bundle
