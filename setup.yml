@@ -23,6 +23,9 @@
     - name: Install python-dev
       apt: pkg=python-dev state=latest
       sudo: true
+    - name: Install flake8
+      apt: pkg=python-flake8 state=latest
+      sudo: true
     - name: Copy over bashrc
       copy: src=files/bashrc dest=/home/vagrant/.bashrc
     - name: Copy over vimrc
@@ -34,4 +37,7 @@
     - name: Get pathogen
       command: curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
     - name: Get syntastic
-      command: git clone --depth=1 https://github.com/scrooloose/syntastic.git chdir=/home/vagrant/.vim/bundle
+      git:
+        repo: https://github.com/scrooloose/syntastic.git
+        dest: /home/vagrant/.vim/bundle/syntastic
+        depth: 1
