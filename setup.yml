@@ -32,6 +32,12 @@
       copy: src=files/vimrc dest=/home/vagrant/.vimrc
     - name: Copy over vim folder
       copy: src=files/vim/ dest=/home/vagrant/.vim/
+    - name: Make sure ~/.config exists
+      file:
+        path: ~/.config
+        state: directory
+    - name: Copy flake8 config
+      copy: src=files/flake8 dest=/home/vagrant/.config/flake8
     - name: Setup pathogen folders
       command: mkdir -p ~/.vim/autoload ~/.vim/bundle
     - name: Get pathogen
