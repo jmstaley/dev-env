@@ -1,0 +1,7 @@
+[user]
+	name = Jon Staley
+	email = jmstaley@gmail.com
+[push]
+	default = matching
+[color]
+	ui = true

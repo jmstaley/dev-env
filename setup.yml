@@ -28,6 +28,8 @@
       sudo: true
     - name: Copy over bashrc
       copy: src=files/bashrc dest=/home/vagrant/.bashrc
+    - name: Copy over gitconfig
+      copy: src=files/gitconfig dest=/home/vagrant/.gitconfig
     - name: Copy over vimrc
       copy: src=files/vimrc dest=/home/vagrant/.vimrc
     - name: Copy over vim folder
