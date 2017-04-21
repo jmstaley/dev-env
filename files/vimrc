@@ -62,13 +62,12 @@ endif
 
 autocmd FileType python setlocal tabstop=4 shiftwidth=4
 autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript setlocal tabstop=4 shiftwidth=4
-"autocmd BufRead *.py set tw=78
+" remove trailing white space
+autocmd FileType python autocmd BufWritePre <buffer> %s/\s\+$//e
 
 autocmd BufEnter *.html set tabstop=2 shiftwidth=2
 autocmd BufEnter *.css set tabstop=2 shiftwidth=2
-autocmd FileType html,xhtml,css setlocal tabstop=2 shiftwidth=2
+autocmd FileType html,xhtml,css,javascript setlocal tabstop=2 shiftwidth=2
 
 execute pathogen#infect()
 
