@@ -49,3 +49,5 @@
         repo: https://github.com/scrooloose/syntastic.git
         dest: /home/vagrant/.vim/bundle/syntastic
         depth: 1
+    - name: Copy tmux conf
+      copy: src=files/tmux.conf dest=/home/vagrant/.tmux.conf
