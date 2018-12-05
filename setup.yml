@@ -4,28 +4,28 @@
   tasks:
     - name: Update apt cache
       apt: update_cache=yes
-      sudo: true
+      become: yes
     - name: install vim
       apt: pkg=vim state=latest
-      sudo: true
+      become: yes
     - name: install tmux
       apt: pkg=tmux state=latest
-      sudo: true
+      become: yes
     - name: Install virtualenv wrapper
       apt: pkg=virtualenvwrapper state=latest
-      sudo: true
+      become: yes
     - name: Install git
       apt: pkg=git state=latest
-      sudo: true
+      become: yes
     - name: install libmysqlclient-dev
       apt: pkg=libmysqlclient-dev state=latest
-      sudo: true
+      become: yes
     - name: Install python-dev
       apt: pkg=python-dev state=latest
-      sudo: true
+      become: yes
     - name: Install flake8
       apt: pkg=python-flake8 state=latest
-      sudo: true
+      become: yes
     - name: Copy over bashrc
       copy: src=files/bashrc dest=/home/vagrant/.bashrc
     - name: Copy over gitconfig
